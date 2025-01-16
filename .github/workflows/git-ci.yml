@@ -1,0 +1,42 @@
+name: CI Workflow for Flask App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout the Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # Step 3: Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t flask-app .
+
+      # Step 4: Run Pylint inside the Docker container
+      - name: Run Pylint
+        run: |
+          docker run --rm flask-app pylint app/
+
+      # Step 5: Run Black (Code Formatting Check)
+      - name: Run Black
+        run: |
+          docker run --rm flask-app black --check app/
+
+      # Step 6: Run Pytest for Unit Tests
+      - name: Run Tests
+        run: |
+          docker run --rm flask-app pytest --verbose
