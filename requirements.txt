@@ -12,4 +12,5 @@ pandas
 numpy
 flask
 opendatasets
-xgboost
+ipython
+pytest-mock

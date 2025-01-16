@@ -10,7 +10,7 @@ APP_DIR = app
 
 # Define the paths to lint, test, and format
 LINT_PATH = $(APP_DIR)
-TEST_PATH = tests
+TEST_PATH = $(APP_DIR)
 FORMAT_PATH = $(APP_DIR)
 
 # Create a virtual environment

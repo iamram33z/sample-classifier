@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Prediction</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        header p {
+            margin: 5px 0 0;
+            font-size: 1rem;
+        }
+
+        /* Form styles */
+        form {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Response message styles */
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .success {
+            color: rgb(107, 0, 128);
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Footer styles */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cancer Prediction Model</h1>
+        <p>Enter values for 20 features to predict the likelihood of cancer.</p>
+    </header>
+
+    <form id="predictionForm">
+        <!-- Input fields for 20 features -->
+        <div id="input-fields">
+            <div class="input-group">
+                <label for="radius_mean">Radius Mean:</label>
+                <input type="number" step="any" id="radius_mean" name="radius_mean" required>
+            </div>
+            <div class="input-group">
+                <label for="texture_mean">Texture Mean:</label>
+                <input type="number" step="any" id="texture_mean" name="texture_mean" required>
+            </div>
+            <div class="input-group">
+                <label for="smoothness_mean">Smoothness Mean:</label>
+                <input type="number" step="any" id="smoothness_mean" name="smoothness_mean" required>
+            </div>
+            <div class="input-group">
+                <label for="compactness_mean">Compactness Mean:</label>
+                <input type="number" step="any" id="compactness_mean" name="compactness_mean" required>
+            </div>
+            <div class="input-group">
+                <label for="concavity_mean">Concavity Mean:</label>
+                <input type="number" step="any" id="concavity_mean" name="concavity_mean" required>
+            </div>
+            <div class="input-group">
+                <label for="symmetry_mean">Symmetry Mean:</label>
+                <input type="number" step="any" id="symmetry_mean" name="symmetry_mean" required>
+            </div>
+            <div class="input-group">
+                <label for="fractal_dimension_mean">Fractal Dimension Mean:</label>
+                <input type="number" step="any" id="fractal_dimension_mean" name="fractal_dimension_mean" required>
+            </div>
+            <div class="input-group">
+                <label for="radius_se">Radius SE:</label>
+                <input type="number" step="any" id="radius_se" name="radius_se" required>
+            </div>
+            <div class="input-group">
+                <label for="texture_se">Texture SE:</label>
+                <input type="number" step="any" id="texture_se" name="texture_se" required>
+            </div>
+            <div class="input-group">
+                <label for="smoothness_se">Smoothness SE:</label>
+                <input type="number" step="any" id="smoothness_se" name="smoothness_se" required>
+            </div>
+            <div class="input-group">
+                <label for="compactness_se">Compactness SE:</label>
+                <input type="number" step="any" id="compactness_se" name="compactness_se" required>
+            </div>
+            <div class="input-group">
+                <label for="concavity_se">Concavity SE:</label>
+                <input type="number" step="any" id="concavity_se" name="concavity_se" required>
+            </div>
+            <div class="input-group">
+                <label for="concave_points_se">Concave Points SE:</label>
+                <input type="number" step="any" id="concave points_se" name="concave points_se" required>
+            </div>
+            <div class="input-group">
+                <label for="symmetry_se">Symmetry SE:</label>
+                <input type="number" step="any" id="symmetry_se" name="symmetry_se" required>
+            </div>
+            <div class="input-group">
+                <label for="fractal_dimension_se">Fractal Dimension SE:</label>
+                <input type="number" step="any" id="fractal_dimension_se" name="fractal_dimension_se" required>
+            </div>
+            <div class="input-group">
+                <label for="smoothness_worst">Smoothness Worst:</label>
+                <input type="number" step="any" id="smoothness_worst" name="smoothness_worst" required>
+            </div>
+            <div class="input-group">
+                <label for="compactness_worst">Compactness Worst:</label>
+                <input type="number" step="any" id="compactness_worst" name="compactness_worst" required>
+            </div>
+            <div class="input-group">
+                <label for="concavity_worst">Concavity Worst:</label>
+                <input type="number" step="any" id="concavity_worst" name="concavity_worst" required>
+            </div>
+            <div class="input-group">
+                <label for="symmetry_worst">Symmetry Worst:</label>
+                <input type="number" step="any" id="symmetry_worst" name="symmetry_worst" required>
+            </div>
+            <div class="input-group">
+                <label for="fractal_dimension_worst">Fractal Dimension Worst:</label>
+                <input type="number" step="any" id="fractal_dimension_worst" name="fractal_dimension_worst" required>
+            </div>
+        </div>
+
+        <button type="submit">Predict</button>
+        <div id="response" class="error"></div>
+    </form>
+
+    <footer>
+        &copy; 2025 Cancer Prediction App. All Rights Reserved.
+    </footer>
+
+    <script>
+        const form = document.getElementById("predictionForm");
+        const responseDiv = document.getElementById("response");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const data = {};
+
+            for (const [key, value] of formData.entries()) {
+                if (!value) {
+                    responseDiv.textContent = `All fields are required. Missing: ${key}`;
+                    responseDiv.className = "error";
+                    return;
+                }
+                data[key] = parseFloat(value);
+            }
+
+            try {
+                const response = await fetch("/predict", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    responseDiv.textContent = `Prediction: ${result.prediction}`;
+                    responseDiv.className = "success";
+                } else {
+                    responseDiv.textContent = result.error || "An error occurred.";
+                    responseDiv.className = "error";
+                }
+            } catch (err) {
+                responseDiv.textContent = "An error occurred while submitting the form.";
+                responseDiv.className = "error";
+            }
+        });
+    </script>
+</body>
+</html>
