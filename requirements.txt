@@ -1,7 +1,15 @@
 pylint
 pytest
 black
-sci-kit-learn
+scikit-learn
+pandas
+numpy
+pylint
+pytest
+black
+scikit-learn
 pandas
 numpy
 flask
+opendatasets
+xgboost
